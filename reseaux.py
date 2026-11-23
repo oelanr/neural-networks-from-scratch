@@ -111,11 +111,12 @@ def delta_couches():
 #step 6 mise à jour des poids
 
 def maj(pas=0.1):
+    delta_w = 0.0
     for m in range(1, M +1):
         for i in range(architecture[m]):
             for j in range(architecture[m-1]):
-                delta_w[i][j] += pas * delta[m][i]* V[m-1][j]
-                w[m][i][j] += delta_w[i][j] 
+                delta_w += pas * delta[m][i]* V[m-1][j]
+                w[m][i][j] += delta_w 
 
 # Step 7 : Entraînement (répéter les étapes 2 à 6 pour chaque prototype)
 def entrainer(epochs=5000, pas=0.5):
